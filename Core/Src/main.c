@@ -129,7 +129,10 @@ int main(void)
   }
   */
   while(fres != FR_OK) {
-	  HAL_Delay(1000); //a short delay is important to let the SD card settle
+	  while (HAL_GPIO_ReadPin(SD_CD_GPIO_Port, SD_CD_Pin) == GPIO_PIN_RESET) {
+		  HAL_Delay(100);
+	  }
+
 
 	  //Open the file system
 	  fres = f_mount(&FatFs, "", 1);
@@ -137,6 +140,8 @@ int main(void)
 		myprintf("f_mount error (%i)\r\n", fres);
 		//while(1);
 	  }
+
+	  HAL_Delay(100); //a short delay is important to let the SD card settle
   }
 
   /*

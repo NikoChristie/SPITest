@@ -64,8 +64,8 @@ all: main-build
 main-build: SPITest.elf secondary-outputs
 
 # Tool invocations
-SPITest.elf SPITest.map: $(OBJS) $(USER_OBJS) C:\Users\12044\STM32CubeIDE\workspace_1.14.1\SPITest\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "SPITest.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\12044\STM32CubeIDE\workspace_1.14.1\SPITest\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPITest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+SPITest.elf SPITest.map: $(OBJS) $(USER_OBJS) D:\UMSAE\SPITest\STM32F446RETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "SPITest.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\UMSAE\SPITest\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SPITest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
