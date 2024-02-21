@@ -62,7 +62,7 @@ static void MX_SPI2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 uint8_t isCardInserted() {
-    return HAL_GPIO_ReadPin(SD_CD_GPIO_Port, SD_CD_Pin) == GPIO_PIN_RESET;
+    return HAL_GPIO_ReadPin(SD_CD_GPIO_Port, SD_CD_Pin) == GPIO_PIN_SET;
 }
 /* USER CODE END 0 */
 
@@ -108,13 +108,15 @@ int main(void)
 	  while (!isCardInserted()) {
 		  HAL_Delay(100);
 	  }
+
+	  HAL_Delay(1000);
+
 	  //Open the file system
 	  fres = f_mount(&FatFs, "", 1);
 	  if (fres != FR_OK) {
 		//while(1);
 	  }
 
-	  HAL_Delay(100);
   }
 
   //Now let's try and write a file "write.txt"
