@@ -108,23 +108,20 @@ int main(void)
 	  while (!isCardInserted()) {
 		  HAL_Delay(100);
 	  }
-
-	  HAL_Delay(1000);
-
 	  //Open the file system
 	  fres = f_mount(&FatFs, "", 1);
-	  if (fres != FR_OK) {
-		//while(1);
-	  }
-
   }
 
   //Now let's try and write a file "write.txt"
   fres = f_open(&fil, "write.txt", FA_WRITE | FA_OPEN_ALWAYS | FA_CREATE_ALWAYS);
 
-
   BYTE readBuf[30];
   strncpy((char*)readBuf, "Niko is the best!!", 19);
+  UINT bytesWrote;
+  fres = f_write(&fil, readBuf, 19, &bytesWrote);
+  if(fres != FR_OK) {
+	__NOP();
+  }
 
   //Be a tidy kiwi - don't forget to close your file!
   f_close(&fil);
